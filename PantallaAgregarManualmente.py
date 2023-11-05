@@ -1,3 +1,4 @@
+from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
@@ -28,7 +29,7 @@ class PantallaAgregarManualmente(Screen):
                                 bold=True
                                 )
 
-        inputLargeList= TextInput(
+        self.inputLargeList = TextInput(
             size_hint=(None, None),
             width=100,
             height=50,
@@ -59,20 +60,18 @@ class PantallaAgregarManualmente(Screen):
             pos_hint={'center_x': 0.55, 'center_y': 0.42}
         )
 
-        lista_x = []
-        lista_y = []
-
-        lista_x = inputListX
-        lista_y = inputListY
-
 
         self.add_widget(button_volver)
         self.add_widget(textTamnioDeListas)
-        self.add_widget(inputLargeList)
+        self.add_widget(self.inputLargeList)
         self.add_widget(textAgregarList)
         self.add_widget(inputListX)
         self.add_widget(inputListY)
 
     def volver_a_inicio(self, instance):
+
+        # app = App.get_running_app()
+        # app.data_to_pass = self.inputLargeList
+
 
         self.manager.current = 'inicio'

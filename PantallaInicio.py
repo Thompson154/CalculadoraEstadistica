@@ -63,9 +63,6 @@ class PantallaInicio(Screen):
         button_calcular.background_color = (0.2, 0.6, 1, 1)
 
 
-        lista_x = PantallaAgregarManualmente
-        lista_y = PantallaAgregarManualmente.data_list_y
-
 
 
         self.add_widget(title)
@@ -93,8 +90,6 @@ class PantallaInicio(Screen):
     class PantallaInicio(Screen):
         def __init__(self, **kwargs):
             super(PantallaInicio, self).__init__(**kwargs)
-
-            pantalla = PantallaAgregarManualmente()
 
             background = Image(source='backgroundmejor.jpeg', allow_stretch=True)
 
@@ -148,9 +143,6 @@ class PantallaInicio(Screen):
 
             button_calcular.background_color = (0.2, 0.6, 1, 1)
 
-            lista_x = pantalla.data_list_x
-            lista_y = pantalla.data_list_y
-
             self.add_widget(title)
             self.add_widget(susDatos)
             self.add_widget(self.susDatosListaX)
@@ -167,11 +159,4 @@ class PantallaInicio(Screen):
 
         def ir_a_calcular(self, instance):
             self.manager.current = 'calcular'
-
-        def actualizar_datos(self, lista_x, lista_y):
-            self.lista_x = lista_x
-            self.lista_y = lista_y
-
-            self.susDatosListaX.text = f"X: {', '.join(self.lista_x)}"
-            self.susDatosListaY.text = f"Y: {', '.join(self.lista_y)}"
 
