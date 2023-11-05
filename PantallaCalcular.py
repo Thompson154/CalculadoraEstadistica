@@ -32,6 +32,7 @@ class PantallaCalcular(Screen):
         botonConsultar = Button(text="Consultar",
                                 size_hint=(None, None),
                                 size=(300, 100),
+
                                 background_color=(0.2, 0.6, 1, 1),
                                 pos_hint={'center_x': 0.85, 'center_y': 0.925}
                                 )
@@ -43,7 +44,7 @@ class PantallaCalcular(Screen):
                          color=(0, 0, 0, 1),
                          bold=True
                          )
-        inicioX = TextInput(
+        self.inicioX = TextInput(
             size_hint=(None, None),  # Desactiva el ajuste automático de tamaño
             width=200,  # Establece el ancho
             height=50,  # Establece la altura
@@ -55,7 +56,7 @@ class PantallaCalcular(Screen):
                   color=(0, 0, 0, 1),
                   bold=True
                   )
-        finalX = TextInput(
+        self.finalX = TextInput(
             size_hint=(None, None),  # Desactiva el ajuste automático de tamaño
             width=200,  # Establece el ancho
             height=50,  # Establece la altura
@@ -68,7 +69,7 @@ class PantallaCalcular(Screen):
                          color=(0, 0, 0, 1),
                          bold=True
                          )
-        inicioY = TextInput(
+        self.inicioY = TextInput(
             size_hint=(None, None),  # Desactiva el ajuste automático de tamaño
             width=200,  # Establece el ancho
             height=50,  # Establece la altura
@@ -80,7 +81,7 @@ class PantallaCalcular(Screen):
                    color=(0, 0, 0, 1),
                    bold=True
                    )
-        finalY = TextInput(size_hint=(None, None),  # Desactiva el ajuste automático de tamaño
+        self.finalY = TextInput(size_hint=(None, None),  # Desactiva el ajuste automático de tamaño
                            width=200,  # Establece el ancho
                            height=50,  # Establece la altura
                            pos_hint={'center_x': 0.62, 'center_y': 0.90}  # Posición centrada
@@ -154,13 +155,13 @@ class PantallaCalcular(Screen):
         self.add_widget(button_volver)
         self.add_widget(botonConsultar)
         self.add_widget(ingreseX)
-        self.add_widget(inicioX)
+        self.add_widget(self.inicioX)
         self.add_widget(a)
-        self.add_widget(finalX)
+        self.add_widget(self.finalX)
         self.add_widget(ingreseY)
-        self.add_widget(inicioY)
+        self.add_widget(self.inicioY)
         self.add_widget(a2)
-        self.add_widget(finalY)
+        self.add_widget(self.finalY)
         self.add_widget(suma)
         self.add_widget(mostrarSuma)
         self.add_widget(promedio)
@@ -173,3 +174,5 @@ class PantallaCalcular(Screen):
 
     def volver_a_inicio(self, instance):
         self.manager.current = 'inicio'
+
+

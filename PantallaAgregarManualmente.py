@@ -22,7 +22,7 @@ class PantallaAgregarManualmente(Screen):
 
 
 
-        textTamnioDeListas = Label(text="Agregue el largo de sus Listas en \n   Ejemplo: 6 ",
+        self.textTamnioDeListas = Label(text="Agregue el largo de sus Listas en \n   Ejemplo: 6 ",
                                 font_size='20sp',
                                 pos_hint={'center_x': 0.25, 'center_y': 0.82},
                                 color=(0, 0, 0, 1),
@@ -44,7 +44,7 @@ class PantallaAgregarManualmente(Screen):
                              bold=True
                              )
 
-        inputListX = TextInput(
+        self.inputListX = TextInput(
             text= "En X",
             size_hint=(None, None),
             width=500,
@@ -52,7 +52,7 @@ class PantallaAgregarManualmente(Screen):
             pos_hint={'center_x': 0.55, 'center_y': 0.62}
         )
 
-        inputListY = TextInput(
+        self.inputListY = TextInput(
             text="En Y",
             size_hint=(None, None),
             width=500,
@@ -62,16 +62,15 @@ class PantallaAgregarManualmente(Screen):
 
 
         self.add_widget(button_volver)
-        self.add_widget(textTamnioDeListas)
+        self.add_widget(self.textTamnioDeListas)
         self.add_widget(self.inputLargeList)
         self.add_widget(textAgregarList)
-        self.add_widget(inputListX)
-        self.add_widget(inputListY)
+        self.add_widget(self.inputListX)
+        self.add_widget(self.inputListY)
 
     def volver_a_inicio(self, instance):
-
-        # app = App.get_running_app()
-        # app.data_to_pass = self.inputLargeList
-
-
+        app = App.get_running_app()
+        app.data_to_pass_X = self.inputListX.text
+        app.data_to_pass_Y = self.inputListY.text
+        app.data_to_pass_tamnioListas = self.textTamnioDeListas
         self.manager.current = 'inicio'
