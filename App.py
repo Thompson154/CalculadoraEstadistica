@@ -4,10 +4,10 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.label import Label
 from kivy.uix.image import Image
 from kivy.uix.textinput import TextInput
-import re
-number_pattern = re.compile("^[0-9]+$") # lo que tendria que hacer limitar en los text input solo numeros y no letras
-# que nos daria un error
+import segmentTree
 
+
+#### ESTA CLASE YA NO USAREMOS CREO ES TODO UN LIO
 
 class CalculadoraEstadistica(App):
     def build(self):
@@ -24,8 +24,7 @@ class CalculadoraEstadistica(App):
                       color=(0, 0, 0, 1)
                       )
 
-
-        listaX = Label(text="LA LISTA DE X APARECERA ACA",
+        listaX = Label(text=f"Sus datos son",
                       font_size='20sp',
                       pos_hint={'center_x': 0.5, 'center_y': 0.7},
                       color=(0, 0, 0, 1)
@@ -64,7 +63,7 @@ class CalculadoraEstadistica(App):
 
         inicio_screen.add_widget(background)
         inicio_screen.add_widget(listaX)
-        inicio_screen.add_widget(listaY)
+        #inicio_screen.add_widget(listaY)
         inicio_screen.add_widget(title)
         inicio_screen.add_widget(buttonCVS)
         inicio_screen.add_widget(buttonMANUAL)
@@ -90,6 +89,9 @@ class CalculadoraEstadistica(App):
 
         labelprueba = Label(text="HOla")
 
+
+        buttonAceptar.bind(on_press=self.build())
+
         csv_screen.add_widget(labelprueba)
         csv_screen.add_widget(buttonAceptar)
 
@@ -104,16 +106,25 @@ class CalculadoraEstadistica(App):
         background = Image(source='backgroundmejor.jpeg', allow_stretch=True)
 
 
-        arregloXN = Label(text="Agregue el largo en X",
+        arregloXN = Label(text="Agregue el largo de su lista",
                   font_size='20sp',
-                  pos_hint={'center_x': 0.15, 'center_y': 0.92},
+                  pos_hint={'center_x': 0.16, 'center_y': 0.92},
                   color=(0, 0, 0, 1),
                   bold=True
         )
 
+
+
         arregloYN = Label(text="Agregue el largo en Y",
                           font_size='20sp',
                           pos_hint={'center_x': 0.15, 'center_y': 0.82},
+                          color=(0, 0, 0, 1),
+                          bold=True
+                          )
+
+        agregarLista = Label(text="Agregue su Lista \nEjemplo = 1 2 3 4 5",
+                          font_size='20sp',
+                          pos_hint={'center_x': 0.15, 'center_y': 0.72},
                           color=(0, 0, 0, 1),
                           bold=True
                           )
@@ -126,12 +137,24 @@ class CalculadoraEstadistica(App):
             pos_hint={'center_x': 0.40, 'center_y': 0.92}  # Posición centrada
         )
 
+        listaIngresada = TextInput(
+            size_hint=(None, None),  # Desactiva el ajuste automático de tamaño
+            width=500,  # Establece el ancho
+            height=50,  # Establece la altura
+            pos_hint={'center_x': 0.50, 'center_y': 0.72}  # Posición centrada
+        )
+
+        nLista = longitudXN
+        listaPorCalcular = list(listaIngresada)
+
+
         longitudYN = TextInput(
             size_hint=(None, None),  # Desactiva el ajuste automático de tamaño
             width=200,  # Establece el ancho
             height=50,  # Establece la altura
             pos_hint={'center_x': 0.40, 'center_y': 0.82}  # Posición centrada
         )
+
 
         # Aca el código
         buttonAceptar = Button(text="Calcular",
@@ -141,11 +164,17 @@ class CalculadoraEstadistica(App):
                                pos_hint={'center_x': 0.85, 'center_y': 0.15}
                                )
 
+
+        buttonAceptar.bind(on_press=self.build())
+
         manual_screen.add_widget(background)
         manual_screen.add_widget(arregloXN)
-        manual_screen.add_widget(arregloYN)
         manual_screen.add_widget(longitudXN)
-        manual_screen.add_widget(longitudYN)
+        manual_screen.add_widget(listaIngresada)
+        manual_screen.add_widget(agregarLista)
+
+        #manual_screen.add_widget(arregloYN)
+        #manual_screen.add_widget(longitudYN)
 
         manual_screen.add_widget(buttonAceptar)
         sm.add_widget(manual_screen)
@@ -175,7 +204,7 @@ class CalculadoraEstadistica(App):
                                   )
 
         # Para X
-        ingreseX = Label(text="Ingrese un intervalo en x : ",
+        ingreseX = Label(text="Ingrese un intervalo de : ",
                          font_size='20sp',
                          pos_hint={'center_x': 0.18, 'center_y': 0.95},
                          color=(0, 0, 0, 1),
@@ -224,6 +253,13 @@ class CalculadoraEstadistica(App):
             pos_hint={'center_x': 0.62, 'center_y': 0.90}  # Posición centrada
         )
 
+        n = nLista
+        segmentTree.a = listaPorCalcular
+
+        segmentTree.init(0, n - 1, 0)
+        result = segmentTree.query(inicioX,  finalX, 0, 1, 5)
+        print(f"Max: {result.max}, Min: {result.min}, GCD: {result.gcd}", f"SUM: {result.sum}")
+
         sumaX = Label(text="La Suma de X y Y : ",
                       font_size='20sp',
                       pos_hint={'center_x': 0.15, 'center_y': 0.82},
@@ -253,11 +289,11 @@ class CalculadoraEstadistica(App):
         calcular_screen.add_widget(inicioX)
         calcular_screen.add_widget(a)
         calcular_screen.add_widget(finalX)
-        calcular_screen.add_widget(inicioY)
-        calcular_screen.add_widget(a2)
-        calcular_screen.add_widget(finalY)
+        # calcular_screen.add_widget(inicioY)
+        # calcular_screen.add_widget(a2)
+        # calcular_screen.add_widget(finalY)
         calcular_screen.add_widget(ingreseX)
-        calcular_screen.add_widget(ingreseY)
+        # calcular_screen.add_widget(ingreseY)
         calcular_screen.add_widget(sumaX)
         calcular_screen.add_widget(promedioX)
         calcular_screen.add_widget(minimoX)
