@@ -3,6 +3,7 @@ from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
 from kivy.uix.label import Label
 from kivy.uix.image import Image
+
 class PantallaAgregarManualmente(Screen):
     def __init__(self, **kwargs):
         super(PantallaAgregarManualmente, self).__init__(**kwargs)
@@ -20,9 +21,9 @@ class PantallaAgregarManualmente(Screen):
 
 
 
-        textTamnioDeListas = Label(text="Agregue el largo de sus Listas en \n  Ejemplo: 6 ",
+        textTamnioDeListas = Label(text="Agregue el largo de sus Listas en \n   Ejemplo: 6 ",
                                 font_size='20sp',
-                                pos_hint={'center_x': 0.2, 'center_y': 0.82},
+                                pos_hint={'center_x': 0.25, 'center_y': 0.82},
                                 color=(0, 0, 0, 1),
                                 bold=True
                                 )
@@ -31,13 +32,13 @@ class PantallaAgregarManualmente(Screen):
             size_hint=(None, None),
             width=100,
             height=50,
-            pos_hint={'center_x': 0.45, 'center_y': 0.82}
+            pos_hint={'center_x': 0.50, 'center_y': 0.82}
         )
 
 
         textAgregarList = Label(text="Agregue su Lista en X y Y \n       Ejemplo = 1 2 3 4 5",
                              font_size='20sp',
-                             pos_hint={'center_x': 0.15, 'center_y': 0.72},
+                             pos_hint={'center_x': 0.20, 'center_y': 0.5},
                              color=(0, 0, 0, 1),
                              bold=True
                              )
@@ -47,7 +48,7 @@ class PantallaAgregarManualmente(Screen):
             size_hint=(None, None),
             width=500,
             height=80,
-            pos_hint={'center_x': 0.55, 'center_y': 0.72}
+            pos_hint={'center_x': 0.55, 'center_y': 0.62}
         )
 
         inputListY = TextInput(
@@ -55,9 +56,14 @@ class PantallaAgregarManualmente(Screen):
             size_hint=(None, None),
             width=500,
             height=80,
-            pos_hint={'center_x': 0.55, 'center_y': 0.62}
+            pos_hint={'center_x': 0.55, 'center_y': 0.42}
         )
 
+        lista_x = []
+        lista_y = []
+
+        lista_x = inputListX
+        lista_y = inputListY
 
 
         self.add_widget(button_volver)
@@ -68,4 +74,5 @@ class PantallaAgregarManualmente(Screen):
         self.add_widget(inputListY)
 
     def volver_a_inicio(self, instance):
+
         self.manager.current = 'inicio'

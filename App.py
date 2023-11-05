@@ -253,13 +253,6 @@ class CalculadoraEstadistica(App):
             pos_hint={'center_x': 0.62, 'center_y': 0.90}  # Posición centrada
         )
 
-        n = nLista
-        segmentTree.a = listaPorCalcular
-
-        segmentTree.init(0, n - 1, 0)
-        result = segmentTree.query(inicioX,  finalX, 0, 1, 5)
-        print(f"Max: {result.max}, Min: {result.min}, GCD: {result.gcd}", f"SUM: {result.sum}")
-
         sumaX = Label(text="La Suma de X y Y : ",
                       font_size='20sp',
                       pos_hint={'center_x': 0.15, 'center_y': 0.82},
@@ -289,11 +282,11 @@ class CalculadoraEstadistica(App):
         calcular_screen.add_widget(inicioX)
         calcular_screen.add_widget(a)
         calcular_screen.add_widget(finalX)
-        # calcular_screen.add_widget(inicioY)
-        # calcular_screen.add_widget(a2)
-        # calcular_screen.add_widget(finalY)
+        calcular_screen.add_widget(inicioY)
+        calcular_screen.add_widget(a2)
+        calcular_screen.add_widget(finalY)
         calcular_screen.add_widget(ingreseX)
-        # calcular_screen.add_widget(ingreseY)
+        calcular_screen.add_widget(ingreseY)
         calcular_screen.add_widget(sumaX)
         calcular_screen.add_widget(promedioX)
         calcular_screen.add_widget(minimoX)
