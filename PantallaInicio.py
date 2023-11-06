@@ -132,4 +132,4 @@ class PantallaInicio(Screen):
         valores2 = ', '.join(map(str, resultado2))
         self.susDatosListaX.text = "X: " + valores1
         self.susDatosListaY.text = "Y: " + valores2
-        self.dismiss_popup
+        self.dismiss_popup()
