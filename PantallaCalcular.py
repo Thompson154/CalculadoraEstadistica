@@ -6,6 +6,8 @@ from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
 from kivy.uix.label import Label
 from kivy.uix.image import Image
+from matplotlib import pyplot as plt
+
 import segmentTree
 
 class PantallaCalcular(Screen):
@@ -201,7 +203,7 @@ class PantallaCalcular(Screen):
         self.mostrarSuma.text = str(resultadoX.sum) + " " + str(resultadoY.sum)
 
 
-    def calcularConSegmentTree(self,*args):
+    def calcularConSegmentTreeCSV(self,*args):
         app = App.get_running_app()
         n = int(app.data_to_pass_CSVlarge)
         listaX = list(map(int, app.data_to_pass_CSVX))  # Convertir los elementos de la lista en enteros
@@ -217,6 +219,17 @@ class PantallaCalcular(Screen):
         self.mostrarPromedio.text = str(resultadoX.promedio) + " " + str(resultadoY.promedio)
         self.mostrarSuma.text = str(resultadoX.sum) + " " + str(resultadoY.sum)
 
+        # plt.plot(list(map(int, app.data_to_pass_CSVX)), list(map(int, app.data_to_pass_Y)), label='Datos')
+        # # Luego, graficamos los puntos de interés:
+        # plt.plot(resultadoX.max, 'ro', label='Máximo')
+        # plt.plot(resultadoX.min, 'bo', label='Mínimo')
+        # plt.plot(resultadoX.gcd, 'go', label='Promedio')
+        # plt.plot(resultadoX.sum, 'yo', label='Suma')
+        #
+        # # Finalmente, mostramos la leyenda y el gráfico:
+        # plt.legend()
+        # plt.show()
+
     def exportar_csv(self, instance):
         # Los datos que quieres exportar
         data = [
@@ -227,6 +240,8 @@ class PantallaCalcular(Screen):
         with open('output.csv', 'w', newline='') as f:
             writer = csv.writer(f)
             writer.writerows(data)
+
+
 
 
 
