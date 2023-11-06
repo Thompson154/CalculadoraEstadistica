@@ -1,3 +1,5 @@
+import csv
+
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.button import Button
@@ -24,19 +26,28 @@ class PantallaCalcular(Screen):
         button_volver.background_color = (0.2, 0.6, 1, 1)
 
 
-        botonImportarCSV = Button(text="Exportar a CSV",
+        self.botonImportarCSV = Button(text="Exportar a CSV",
                                   size_hint=(None, None),
+                                  on_press=self.exportar_csv,
                                   size=(300, 100),
                                   background_color=(0.2, 0.6, 1, 1),
                                   pos_hint={'center_x': 0.85, 'center_y': 0.1}
                                   )
 
-        botonConsultar = Button(text="Consultar",
+        botonConsultarManual = Button(text="Consultar si Agrego \n Datos Manualmente",
                                 size_hint=(None, None),
                                 size=(300, 100),
-                                on_press=self.calcularConSegmentTree,
+                                on_press=self.calcularConSegmentTreeManual,
                                 background_color=(0.2, 0.6, 1, 1),
                                 pos_hint={'center_x': 0.85, 'center_y': 0.925}
+                                )
+
+        botonConsultarCSV = Button(text="Consultar si Agrego \n Datos importando CSV",
+                                size_hint=(None, None),
+                                size=(300, 100),
+                                on_press=self.calcularConSegmentTreeCSV,
+                                background_color=(0.2, 0.6, 1, 1),
+                                pos_hint={'center_x': 0.85, 'center_y': 0.8}
                                 )
 
         # Para X
@@ -147,9 +158,10 @@ class PantallaCalcular(Screen):
 
 
 
-        self.add_widget(botonImportarCSV)
+        self.add_widget(self.botonImportarCSV)
         self.add_widget(button_volver)
-        self.add_widget(botonConsultar)
+        self.add_widget(botonConsultarManual)
+        self.add_widget(botonConsultarCSV)
         self.add_widget(ingreseX)
         self.add_widget(self.inicioX)
         self.add_widget(a)
@@ -172,7 +184,7 @@ class PantallaCalcular(Screen):
         self.manager.current = 'inicio'
 
 
-    def calcularConSegmentTree(self,*args):
+    def calcularConSegmentTreeManual(self,*args):
         app = App.get_running_app()
         n = int(app.data_to_pass_tamanioListas)
         listaX = list(map(int, app.data_to_pass_X))  # Convertir los elementos de la lista en enteros
@@ -187,6 +199,35 @@ class PantallaCalcular(Screen):
         self.mostrarMinimo.text = str(resultadoX.min) + " " + str(resultadoY.min)
         self.mostrarPromedio.text = str(resultadoX.gcd) + " " + str(resultadoY.gcd)
         self.mostrarSuma.text = str(resultadoX.sum) + " " + str(resultadoY.sum)
+
+
+    def calcularConSegmentTreeCSV(self,*args):
+        app = App.get_running_app()
+        n = int(app.data_to_pass_CSVlarge)
+        listaX = list(map(int, app.data_to_pass_CSVX))  # Convertir los elementos de la lista en enteros
+        listaY = list(map(int, app.data_to_pass_CSVY))  # Convertir los elementos de la lista en enteros
+        segmentTree.a = listaX
+        segmentTree.init(0, n - 1, 0)
+        resultadoX = segmentTree.query(0, n - 1, 0, int(self.inicioX.text), int(self.finalX.text))
+        segmentTree.a = listaY
+        segmentTree.init(0, n - 1, 0)
+        resultadoY = segmentTree.query(0, n - 1, 0, int(self.inicioY.text), int(self.finalY.text))
+        self.mostrarMaximo.text = str(resultadoX.max) + " " + str(resultadoY.max)
+        self.mostrarMinimo.text = str(resultadoX.min) + " " + str(resultadoY.min)
+        self.mostrarPromedio.text = str(resultadoX.gcd) + " " + str(resultadoY.gcd)
+        self.mostrarSuma.text = str(resultadoX.sum) + " " + str(resultadoY.sum)
+
+    def exportar_csv(self, instance):
+        # Los datos que quieres exportar
+        data = [
+            ['Intervalo', 'Suma', 'Promedio', 'Mínimo', 'Máximo'],
+            [f'{self.inicioX.text}-{self.finalX.text}', self.mostrarSuma.text, self.mostrarPromedio.text,
+             self.mostrarMinimo.text, self.mostrarMaximo.text]
+        ]
+        with open('output.csv', 'w', newline='') as f:
+            writer = csv.writer(f)
+            writer.writerows(data)
+
 
 
 
