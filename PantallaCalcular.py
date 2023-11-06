@@ -12,14 +12,14 @@ from matplotlib import pyplot as plt
 import segmentTree
 
 class PantallaCalcular(Screen):
+    intervaloList1=[]
+    intervaloList2 = []
     def __init__(self, **kwargs):
         super(PantallaCalcular, self).__init__(**kwargs)
 
         background = Image(source='background_Manual2.jpg', allow_stretch=True)
 
         self.add_widget(background)
-
-        # Aca el código
 
         button_volver = Button(text="Volver a Inicio",
                                on_press=self.volver_a_inicio,
@@ -78,30 +78,6 @@ class PantallaCalcular(Screen):
             height=50,  # Establece la altura
             pos_hint={'center_x': 0.62, 'center_y': 0.9}  # Posición centrada
         )
-        # Para Y
-        # ingreseY = Label(text="Ingrese un intervalo en Y: ",
-        #                  font_size='20sp',
-        #                  pos_hint={'center_x': 0.18, 'center_y': 0.90},
-        #                  color=(0, 0, 0, 1),
-        #                  bold=True
-        #                  )
-        # self.inicioY = TextInput(
-        #     size_hint=(None, None),  # Desactiva el ajuste automático de tamaño
-        #     width=200,  # Establece el ancho
-        #     height=50,  # Establece la altura
-        #     pos_hint={'center_x': 0.42, 'center_y': 0.90}  # Posición centrada
-        # )
-        # a2 = Label(text="a",
-        #            font_size='20sp',
-        #            pos_hint={'center_x': 0.52, 'center_y': 0.90},
-        #            color=(0, 0, 0, 1),
-        #            bold=True
-        #            )
-        # self.finalY = TextInput(size_hint=(None, None),  # Desactiva el ajuste automático de tamaño
-        #                    width=200,  # Establece el ancho
-        #                    height=50,  # Establece la altura
-        #                    pos_hint={'center_x': 0.62, 'center_y': 0.90}  # Posición centrada
-        #                    )
 
         suma = Label(text="La Suma de X y Y : ",
                       font_size='20sp',
@@ -169,10 +145,6 @@ class PantallaCalcular(Screen):
         self.add_widget(self.inicioX)
         self.add_widget(a)
         self.add_widget(self.finalX)
-        #self.add_widget(ingreseY)
-        #self.add_widget(self.inicioY)
-        #self.add_widget(a2)
-        #self.add_widget(self.finalY)
         self.add_widget(suma)
         self.add_widget(self.mostrarSuma)
         self.add_widget(promedio)
@@ -194,14 +166,14 @@ class PantallaCalcular(Screen):
         listaY = list(map(int, app.data_to_pass_Y))  # Convertir los elementos de la lista en enteros
         segmentTree.a = listaX
         segmentTree.init(0, n - 1, 0)
-        resultadoX = segmentTree.query(0, n - 1, 0, int(self.inicioX.text), int(self.finalX.text))
+        resultadoX = segmentTree.query(0, n - 1, 0, int(self.inicioX.text)-1, int(self.finalX.text)-1)
         segmentTree.a = listaY
         segmentTree.init(0, n - 1, 0)
-        resultadoY = segmentTree.query(0, n - 1, 0, int(self.inicioX.text), int(self.finalX.text))
-        self.mostrarMaximo.text = str(resultadoX.max) + " " + str(resultadoY.max)
-        self.mostrarMinimo.text = str(resultadoX.min) + " " + str(resultadoY.min)
-        self.mostrarPromedio.text = str(int(resultadoX.promedio)) + " " + str(int(resultadoY.promedio))
-        self.mostrarSuma.text = str(resultadoX.sum) + " " + str(resultadoY.sum)
+        resultadoY = segmentTree.query(0, n - 1, 0, int(self.inicioX.text)-1, int(self.finalX.text)-1)
+        self.mostrarMaximo.text = str(resultadoX.max) + "    " + str(resultadoY.max)
+        self.mostrarMinimo.text = str(resultadoX.min) + "    " + str(resultadoY.min)
+        self.mostrarPromedio.text = str(resultadoX.promedio) + "    " + str(resultadoY.promedio)
+        self.mostrarSuma.text = str(resultadoX.sum) + "    " + str(resultadoY.sum)
 
         # Grafica empieza aca
 
@@ -237,10 +209,10 @@ class PantallaCalcular(Screen):
         segmentTree.a = listaY
         segmentTree.init(0, n - 1, 0)
         resultadoY = segmentTree.query(0, n - 1, 0, int(self.inicioX.text), int(self.finalX.text))
-        self.mostrarMaximo.text = str(resultadoX.max) + " " + str(resultadoY.max)
-        self.mostrarMinimo.text = str(resultadoX.min) + " " + str(resultadoY.min)
-        self.mostrarPromedio.text = str(int(resultadoX.promedio)) + " " + str(int(resultadoY.promedio))
-        self.mostrarSuma.text = str(resultadoX.sum) + " " + str(resultadoY.sum)
+        self.mostrarMaximo.text = str(resultadoX.max) + "    " + str(resultadoY.max)
+        self.mostrarMinimo.text = str(resultadoX.min) + "    " + str(resultadoY.min)
+        self.mostrarPromedio.text = str(resultadoX.promedio) + "    " + str(resultadoY.promedio)
+        self.mostrarSuma.text = str(resultadoX.sum) + "     " + str(resultadoY.sum)
 
         # Grafica empieza aca
 
