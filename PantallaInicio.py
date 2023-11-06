@@ -3,8 +3,21 @@ from kivy.uix.button import Button
 from kivy.uix.screenmanager import Screen
 from kivy.uix.image import Image
 from kivy.uix.label import Label
+#nuevo
+from kivy.properties import ObjectProperty
+from kivy.uix.popup import Popup
+from kivy.uix.filechooser import FileChooserListView
+import openpyxl
+
+
+class LoadDialog(Screen):
+    load = ObjectProperty(None)
+    cancel = ObjectProperty(None)
+#nuevo lo de arriba
 
 class PantallaInicio(Screen):
+    loadfile = ObjectProperty(None) #nuevo
+
     def __init__(self, **kwargs):
         super(PantallaInicio, self).__init__(**kwargs)
 
@@ -20,10 +33,10 @@ class PantallaInicio(Screen):
                       )
 
         susDatos = Label(text="Sus Datos",
-                      font_size='20sp',
-                      pos_hint={'center_x': 0.32, 'center_y': 0.77},
-                      color=(0, 0, 0, 1)
-                      )
+                         font_size='20sp',
+                         pos_hint={'center_x': 0.32, 'center_y': 0.77},
+                         color=(0, 0, 0, 1)
+                         )
 
         self.susDatosListaX = Label(text="Aqui aparecera sus Datos en X",
                          font_size='15sp',
@@ -48,6 +61,8 @@ class PantallaInicio(Screen):
                                     pos_hint={'center_x': 0.50, 'center_y': 0.55},
                                     color=(0, 0, 0, 1)
                                     )
+
+
 
         button_importar_csv = Button(text="Ir a Importar CSV",
                                      on_press=self.ir_a_importar_csv,
@@ -101,8 +116,40 @@ class PantallaInicio(Screen):
         self.susDatosListaCSVX.text = ', '.join(app.data_to_pass_CSVX)
         self.susDatosListaCSVY.text = ', '.join(app.data_to_pass_CSVY)
 
+# Nuevas Cosas
+    def show_load(self, instance):
+        content = LoadDialog(load=self.load, cancel=self.dismiss_popup)
+        self._popup = Popup(title="Load file", content=content,
+                            size_hint=(0.9, 0.9))
+        self.file_chooser = FileChooserListView()
+        self.file_chooser.bind(on_submit=self.select_file)
+        content.add_widget(self.file_chooser)
+        self._popup.open()
 
+    def load(self, path, filename):
+        print(path)
+        print(filename)
+        archivo_xlsx = filename
 
+    def dismiss_popup(self):
+        self._popup.dismiss()
 
+    def show_file_chooser(self, instance):
+        self.file_chooser.path = "/"
+        self.file_chooser.open()
 
-
+    def select_file(self, instance, selection, touch):
+        selected_file = selection[0]
+        workbook = openpyxl.load_workbook(selected_file)
+        hoja = workbook["Hoja1"]
+        resultado1 = []
+        resultado2 = []
+        for fila in hoja.iter_rows(min_row=1, max_col=2, values_only=True):
+            resultado1.append(fila[0])
+            resultado2.append(fila[1])
+        workbook.close()
+        valores1 = ', '.join(map(str, resultado1))
+        valores2 = ', '.join(map(str, resultado2))
+        self.susDatosListaX.text = "X: " + valores1
+        self.susDatosListaY.text = "Y: " + valores2
+        self.dismiss_popup
