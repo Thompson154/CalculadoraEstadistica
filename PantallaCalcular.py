@@ -6,6 +6,7 @@ from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
 from kivy.uix.label import Label
 from kivy.uix.image import Image
+import matplotlib.pyplot as plt
 import segmentTree
 
 class PantallaCalcular(Screen):
@@ -156,6 +157,9 @@ class PantallaCalcular(Screen):
                             bold=True
                             )
 
+        #Cosas del grafico
+
+
 
 
         self.add_widget(self.botonImportarCSV)
@@ -216,6 +220,24 @@ class PantallaCalcular(Screen):
         self.mostrarMinimo.text = str(resultadoX.min) + " " + str(resultadoY.min)
         self.mostrarPromedio.text = str(resultadoX.gcd) + " " + str(resultadoY.gcd)
         self.mostrarSuma.text = str(resultadoX.sum) + " " + str(resultadoY.sum)
+
+        #Grafica empieza aca
+
+        fig, ax = plt.subplots()
+        ax.plot([1, 2, 3, 4, 5], [1, 4, 9, 16, 25])
+        ax.set_title('Gráfico de Matplotlib')
+
+        # Guardar la figura como un archivo PNG
+        fig.savefig('grafico.png')
+
+        image = Image(source='grafico.png')
+        image.size_hint = (0.3, 0.3)  # Hacer que la imagen ocupe el 50% de la pantalla
+        image.pos_hint = {'x': 0.60, 'y': 0.45}
+
+        self.add_widget(image)
+
+        #Termina Aca
+
 
     def exportar_csv(self, instance):
         # Los datos que quieres exportar
