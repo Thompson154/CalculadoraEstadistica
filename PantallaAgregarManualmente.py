@@ -22,7 +22,7 @@ class PantallaAgregarManualmente(Screen):
 
 
 
-        self.textTamnioDeListas = Label(text="Agregue el largo de sus Listas en \n   Ejemplo: 6 ",
+        textTamanioDeListas = Label(text="Agregue el largo de sus Listas en \n   Ejemplo: 6 ",
                                 font_size='20sp',
                                 pos_hint={'center_x': 0.25, 'center_y': 0.82},
                                 color=(0, 0, 0, 1),
@@ -35,7 +35,6 @@ class PantallaAgregarManualmente(Screen):
             height=50,
             pos_hint={'center_x': 0.50, 'center_y': 0.82}
         )
-
 
         textAgregarList = Label(text="Agregue su Lista en X y Y \n       Ejemplo = 1 2 3 4 5",
                              font_size='20sp',
@@ -62,7 +61,7 @@ class PantallaAgregarManualmente(Screen):
 
 
         self.add_widget(button_volver)
-        self.add_widget(self.textTamnioDeListas)
+        self.add_widget(textTamanioDeListas)
         self.add_widget(self.inputLargeList)
         self.add_widget(textAgregarList)
         self.add_widget(self.inputListX)
@@ -72,5 +71,5 @@ class PantallaAgregarManualmente(Screen):
         app = App.get_running_app()
         app.data_to_pass_X = self.inputListX.text.split()
         app.data_to_pass_Y = self.inputListY.text.split()
-        app.data_to_pass_tamnioListas = self.textTamnioDeListas.text
+        app.data_to_pass_tamanioListas = self.inputLargeList.text
         self.manager.current = 'inicio'

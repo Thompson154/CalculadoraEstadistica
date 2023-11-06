@@ -174,17 +174,18 @@ class PantallaCalcular(Screen):
 
     def calcularConSegmentTree(self,*args):
         app = App.get_running_app()
-        n = app.data_to_pass_tamnioListas
+        n = int(app.data_to_pass_tamanioListas)
         listaX = list(map(int, app.data_to_pass_X))  # Convertir los elementos de la lista en enteros
         listaY = list(map(int, app.data_to_pass_Y))  # Convertir los elementos de la lista en enteros
-        segmentTree.n = n
         segmentTree.a = listaX
-        resultadoX = segmentTree.query(int(self.inicioX.text), int(self.finalX.text), 0, 2, 4)
+        segmentTree.init(0, n - 1, 0)
+        resultadoX = segmentTree.query(0, n - 1, 0, int(self.inicioX.text), int(self.finalX.text))
         segmentTree.a = listaY
-        resultadoY = segmentTree.query(int(self.inicioY.text), int(self.finalY.text), 0, 2, 4)
-
+        segmentTree.init(0, n - 1, 0)
+        resultadoY = segmentTree.query(0, n - 1, 0, int(self.inicioY.text), int(self.finalY.text))
         self.mostrarMaximo.text = str(resultadoX.max) + " " + str(resultadoY.max)
         self.mostrarMinimo.text = str(resultadoX.min) + " " + str(resultadoY.min)
+        self.mostrarPromedio.text = str(resultadoX.gcd) + " " + str(resultadoY.gcd)
         self.mostrarSuma.text = str(resultadoX.sum) + " " + str(resultadoY.sum)
 
 
