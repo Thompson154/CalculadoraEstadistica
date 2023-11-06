@@ -197,11 +197,11 @@ class PantallaCalcular(Screen):
         resultadoY = segmentTree.query(0, n - 1, 0, int(self.inicioX.text), int(self.finalX.text))
         self.mostrarMaximo.text = str(resultadoX.max) + " " + str(resultadoY.max)
         self.mostrarMinimo.text = str(resultadoX.min) + " " + str(resultadoY.min)
-        self.mostrarPromedio.text = str(resultadoX.gcd) + " " + str(resultadoY.gcd)
+        self.mostrarPromedio.text = str(resultadoX.promedio) + " " + str(resultadoY.promedio)
         self.mostrarSuma.text = str(resultadoX.sum) + " " + str(resultadoY.sum)
 
 
-    def calcularConSegmentTreeCSV(self,*args):
+    def calcularConSegmentTree(self,*args):
         app = App.get_running_app()
         n = int(app.data_to_pass_CSVlarge)
         listaX = list(map(int, app.data_to_pass_CSVX))  # Convertir los elementos de la lista en enteros
@@ -214,7 +214,7 @@ class PantallaCalcular(Screen):
         resultadoY = segmentTree.query(0, n - 1, 0, int(self.inicioX.text), int(self.finalX.text))
         self.mostrarMaximo.text = str(resultadoX.max) + " " + str(resultadoY.max)
         self.mostrarMinimo.text = str(resultadoX.min) + " " + str(resultadoY.min)
-        self.mostrarPromedio.text = str(resultadoX.gcd) + " " + str(resultadoY.gcd)
+        self.mostrarPromedio.text = str(resultadoX.promedio) + " " + str(resultadoY.promedio)
         self.mostrarSuma.text = str(resultadoX.sum) + " " + str(resultadoY.sum)
 
     def exportar_csv(self, instance):

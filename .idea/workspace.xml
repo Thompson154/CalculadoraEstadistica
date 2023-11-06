@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbfd6138-6a62-4552-af25-e9ff55704a0a" name="Changes" comment="no se que">
-      <change beforePath="$PROJECT_DIR$/PantallaAgregarManualmente.py" beforeDir="false" afterPath="$PROJECT_DIR$/PantallaAgregarManualmente.py" afterDir="false" />
+    <list default="true" id="dbfd6138-6a62-4552-af25-e9ff55704a0a" name="Changes" comment="Importar archivos csv">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PantallaCalcular.py" beforeDir="false" afterPath="$PROJECT_DIR$/PantallaCalcular.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PantallaInicio.py" beforeDir="false" afterPath="$PROJECT_DIR$/PantallaInicio.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/segmentTree.py" beforeDir="false" afterPath="$PROJECT_DIR$/segmentTree.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,9 +16,15 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--follow-tags" />
+        <option name="title" value="Current Branch" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="csv" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -39,7 +46,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "csv",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/vale_/PycharmProjects/CalculadoraEstadistica/App.py",
     "node.js.detected.package.eslint": "true",
@@ -136,7 +143,7 @@
       <updated>1699199639729</updated>
       <workItem from="1699199641161" duration="2263000" />
       <workItem from="1699220454578" duration="2984000" />
-      <workItem from="1699225091073" duration="20085000" />
+      <workItem from="1699225091073" duration="22394000" />
     </task>
     <task id="LOCAL-00001" summary="no se que">
       <option name="closed" value="true" />
@@ -154,7 +161,23 @@
       <option name="project" value="LOCAL" />
       <updated>1699247683168</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Importar archivos csv">
+      <option name="closed" value="true" />
+      <created>1699248745190</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1699248745190</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Importar archivos csv">
+      <option name="closed" value="true" />
+      <created>1699248776576</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1699248776576</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,15 +196,16 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="no se que" />
-    <option name="LAST_COMMIT_MESSAGE" value="no se que" />
+    <MESSAGE value="Importar archivos csv" />
+    <option name="LAST_COMMIT_MESSAGE" value="Importar archivos csv" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/CalculadoraEstadistica$PantallaAgregarManualmente.coverage" NAME="PantallaAgregarManualmente Coverage Results" MODIFIED="1699248391308" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CalculadoraEstadistica$PantallaAgregarManualmente.coverage" NAME="PantallaAgregarManualmente Coverage Results" MODIFIED="1699249920906" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CalculadoraEstadistica$local.coverage" NAME="pySys Coverage Results" MODIFIED="1699200728848" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CalculadoraEstadistica$PantallaImportarCSV.coverage" NAME="PantallaImportarCSV Coverage Results" MODIFIED="1699239916992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CalculadoraEstadistica$PantallaInicio.coverage" NAME="PantallaInicio Coverage Results" MODIFIED="1699248528646" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CalculadoraEstadistica$pySys.coverage" NAME="pySys Coverage Results" MODIFIED="1699247762478" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CalculadoraEstadistica$BUILD.coverage" NAME="BUILD Coverage Results" MODIFIED="1699248531976" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CalculadoraEstadistica$BUILD.coverage" NAME="BUILD Coverage Results" MODIFIED="1699249925143" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CalculadoraEstadistica$button.coverage" NAME="button Coverage Results" MODIFIED="1699233304090" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/AppData/Local/Programs/Python/Python311/Lib/site-packages/kivy/uix/behaviors" />
     <SUITE FILE_PATH="coverage/CalculadoraEstadistica$App.coverage" NAME="App Coverage Results" MODIFIED="1699233322162" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
