@@ -6,8 +6,9 @@ from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
 from kivy.uix.label import Label
 from kivy.uix.image import Image
-import matplotlib.pyplot as plt
-import numpy as np
+from matplotlib import pyplot as plt
+
+
 import segmentTree
 
 class PantallaCalcular(Screen):
@@ -174,6 +175,28 @@ class PantallaCalcular(Screen):
         self.mostrarPromedio.text = str(resultadoX.promedio) + "    " + str(resultadoY.promedio)
         self.mostrarSuma.text = str(resultadoX.sum) + "    " + str(resultadoY.sum)
 
+        # Grafica empieza aca
+
+        fig, ax = plt.subplots()
+        ax.plot(listaX, listaY)
+
+        ax.scatter([resultadoX.max, resultadoX.min, resultadoX.promedio, resultadoX.sum],
+                   [resultadoY.max, resultadoY.min, resultadoY.promedio, resultadoY.sum],
+                   color='red')
+
+        ax.set_title('Gráfico de Sus Datos')
+
+        # Guardar la figura como un archivo PNG
+        fig.savefig('grafico.png')
+
+        image = Image(source='grafico.png')
+        image.size_hint = (0.5, 0.5)  # Hacer que la imagen ocupe el 50% de la pantalla
+        image.pos_hint = {'x': 0.50, 'y': 0.25}
+
+        self.add_widget(image)
+
+        # Termina Aca
+
 
     def calcularConSegmentTreeCSV(self,*args):
         app = App.get_running_app()
@@ -190,16 +213,28 @@ class PantallaCalcular(Screen):
         self.mostrarMinimo.text = str(resultadoX.min) + "    " + str(resultadoY.min)
         self.mostrarPromedio.text = str(resultadoX.promedio) + "    " + str(resultadoY.promedio)
         self.mostrarSuma.text = str(resultadoX.sum) + "     " + str(resultadoY.sum)
-        # plt.plot(list(map(int, app.data_to_pass_CSVX)), list(map(int, app.data_to_pass_Y)), label='Datos')
-        # # Luego, graficamos los puntos de interés:
-        # plt.plot(resultadoX.max, 'ro', label='Máximo')
-        # plt.plot(resultadoX.min, 'bo', label='Mínimo')
-        # plt.plot(resultadoX.gcd, 'go', label='Promedio')
-        # plt.plot(resultadoX.sum, 'yo', label='Suma')
-        #
-        # # Finalmente, mostramos la leyenda y el gráfico:
-        # plt.legend()
-        # plt.show()
+
+        # Grafica empieza aca
+
+        fig, ax = plt.subplots()
+        ax.plot(listaX, listaY)
+
+        ax.scatter([resultadoX.max, resultadoX.min, resultadoX.promedio, resultadoX.sum],
+                   [resultadoY.max, resultadoY.min, resultadoY.promedio, resultadoY.sum],
+                   color='red')
+
+        ax.set_title('Gráfico de sus Datos')
+
+        # Guardar la figura como un archivo PNG
+        fig.savefig('grafico.png')
+
+        image = Image(source='grafico.png')
+        image.size_hint = (0.5, 0.5)  # Hacer que la imagen ocupe el 50% de la pantalla
+        image.pos_hint = {'x': 0.50, 'y': 0.25}
+
+        self.add_widget(image)
+
+        # Termina Aca
 
     def exportar_csv(self, instance):
         # Los datos que quieres exportar
