@@ -51,9 +51,9 @@ class PantallaCalcular(Screen):
                                 )
 
         # Para X
-        ingreseX = Label(text="Ingrese un intervalo en X: ",
+        ingreseX = Label(text="Ingrese un intervalo de: ",
                          font_size='20sp',
-                         pos_hint={'center_x': 0.18, 'center_y': 0.95},
+                         pos_hint={'center_x': 0.18, 'center_y': 0.9},
                          color=(0, 0, 0, 1),
                          bold=True
                          )
@@ -61,11 +61,11 @@ class PantallaCalcular(Screen):
             size_hint=(None, None),  # Desactiva el ajuste automático de tamaño
             width=200,  # Establece el ancho
             height=50,  # Establece la altura
-            pos_hint={'center_x': 0.42, 'center_y': 0.95}  # Posición centrada
+            pos_hint={'center_x': 0.42, 'center_y': 0.9}  # Posición centrada
         )
         a = Label(text="a",
                   font_size='20sp',
-                  pos_hint={'center_x': 0.52, 'center_y': 0.95},
+                  pos_hint={'center_x': 0.52, 'center_y': 0.9},
                   color=(0, 0, 0, 1),
                   bold=True
                   )
@@ -73,32 +73,32 @@ class PantallaCalcular(Screen):
             size_hint=(None, None),  # Desactiva el ajuste automático de tamaño
             width=200,  # Establece el ancho
             height=50,  # Establece la altura
-            pos_hint={'center_x': 0.62, 'center_y': 0.95}  # Posición centrada
+            pos_hint={'center_x': 0.62, 'center_y': 0.9}  # Posición centrada
         )
         # Para Y
-        ingreseY = Label(text="Ingrese un intervalo en Y: ",
-                         font_size='20sp',
-                         pos_hint={'center_x': 0.18, 'center_y': 0.90},
-                         color=(0, 0, 0, 1),
-                         bold=True
-                         )
-        self.inicioY = TextInput(
-            size_hint=(None, None),  # Desactiva el ajuste automático de tamaño
-            width=200,  # Establece el ancho
-            height=50,  # Establece la altura
-            pos_hint={'center_x': 0.42, 'center_y': 0.90}  # Posición centrada
-        )
-        a2 = Label(text="a",
-                   font_size='20sp',
-                   pos_hint={'center_x': 0.52, 'center_y': 0.90},
-                   color=(0, 0, 0, 1),
-                   bold=True
-                   )
-        self.finalY = TextInput(size_hint=(None, None),  # Desactiva el ajuste automático de tamaño
-                           width=200,  # Establece el ancho
-                           height=50,  # Establece la altura
-                           pos_hint={'center_x': 0.62, 'center_y': 0.90}  # Posición centrada
-                           )
+        # ingreseY = Label(text="Ingrese un intervalo en Y: ",
+        #                  font_size='20sp',
+        #                  pos_hint={'center_x': 0.18, 'center_y': 0.90},
+        #                  color=(0, 0, 0, 1),
+        #                  bold=True
+        #                  )
+        # self.inicioY = TextInput(
+        #     size_hint=(None, None),  # Desactiva el ajuste automático de tamaño
+        #     width=200,  # Establece el ancho
+        #     height=50,  # Establece la altura
+        #     pos_hint={'center_x': 0.42, 'center_y': 0.90}  # Posición centrada
+        # )
+        # a2 = Label(text="a",
+        #            font_size='20sp',
+        #            pos_hint={'center_x': 0.52, 'center_y': 0.90},
+        #            color=(0, 0, 0, 1),
+        #            bold=True
+        #            )
+        # self.finalY = TextInput(size_hint=(None, None),  # Desactiva el ajuste automático de tamaño
+        #                    width=200,  # Establece el ancho
+        #                    height=50,  # Establece la altura
+        #                    pos_hint={'center_x': 0.62, 'center_y': 0.90}  # Posición centrada
+        #                    )
 
         suma = Label(text="La Suma de X y Y : ",
                       font_size='20sp',
@@ -166,10 +166,10 @@ class PantallaCalcular(Screen):
         self.add_widget(self.inicioX)
         self.add_widget(a)
         self.add_widget(self.finalX)
-        self.add_widget(ingreseY)
-        self.add_widget(self.inicioY)
-        self.add_widget(a2)
-        self.add_widget(self.finalY)
+        #self.add_widget(ingreseY)
+        #self.add_widget(self.inicioY)
+        #self.add_widget(a2)
+        #self.add_widget(self.finalY)
         self.add_widget(suma)
         self.add_widget(self.mostrarSuma)
         self.add_widget(promedio)
@@ -194,7 +194,7 @@ class PantallaCalcular(Screen):
         resultadoX = segmentTree.query(0, n - 1, 0, int(self.inicioX.text), int(self.finalX.text))
         segmentTree.a = listaY
         segmentTree.init(0, n - 1, 0)
-        resultadoY = segmentTree.query(0, n - 1, 0, int(self.inicioY.text), int(self.finalY.text))
+        resultadoY = segmentTree.query(0, n - 1, 0, int(self.inicioX.text), int(self.finalX.text))
         self.mostrarMaximo.text = str(resultadoX.max) + " " + str(resultadoY.max)
         self.mostrarMinimo.text = str(resultadoX.min) + " " + str(resultadoY.min)
         self.mostrarPromedio.text = str(resultadoX.gcd) + " " + str(resultadoY.gcd)
@@ -211,7 +211,7 @@ class PantallaCalcular(Screen):
         resultadoX = segmentTree.query(0, n - 1, 0, int(self.inicioX.text), int(self.finalX.text))
         segmentTree.a = listaY
         segmentTree.init(0, n - 1, 0)
-        resultadoY = segmentTree.query(0, n - 1, 0, int(self.inicioY.text), int(self.finalY.text))
+        resultadoY = segmentTree.query(0, n - 1, 0, int(self.inicioX.text), int(self.finalX.text))
         self.mostrarMaximo.text = str(resultadoX.max) + " " + str(resultadoY.max)
         self.mostrarMinimo.text = str(resultadoX.min) + " " + str(resultadoY.min)
         self.mostrarPromedio.text = str(resultadoX.gcd) + " " + str(resultadoY.gcd)

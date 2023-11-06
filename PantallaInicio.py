@@ -27,17 +27,27 @@ class PantallaInicio(Screen):
 
         self.susDatosListaX = Label(text="Aqui aparecera sus Datos en X",
                          font_size='15sp',
-                         pos_hint={'center_x': 0.40, 'center_y': 0.65},
+                         pos_hint={'center_x': 0.50, 'center_y': 0.65},
                          color=(0, 0, 0, 1)
                          )
 
         self.susDatosListaY = Label(text="Aqui aparecera sus Datos en Y",
                               font_size='15sp',
-                              pos_hint={'center_x': 0.40, 'center_y': 0.55},
+                              pos_hint={'center_x': 0.50, 'center_y': 0.55},
                               color=(0, 0, 0, 1)
                               )
 
+        self.susDatosListaCSVX = Label(text="Aqui aparecera sus Datos en X",
+                                    font_size='15sp',
+                                    pos_hint={'center_x': 0.50, 'center_y': 0.65},
+                                    color=(0, 0, 0, 1)
+                                    )
 
+        self.susDatosListaCSVY = Label(text="Aqui aparecera sus Datos en Y",
+                                    font_size='15sp',
+                                    pos_hint={'center_x': 0.50, 'center_y': 0.55},
+                                    color=(0, 0, 0, 1)
+                                    )
 
         button_importar_csv = Button(text="Ir a Importar CSV",
                                      on_press=self.ir_a_importar_csv,
@@ -70,6 +80,8 @@ class PantallaInicio(Screen):
         self.add_widget(susDatos)
         self.add_widget(self.susDatosListaX)
         self.add_widget(self.susDatosListaY)
+        self.add_widget(self.susDatosListaCSVX)
+        self.add_widget(self.susDatosListaCSVY)
         self.add_widget(button_importar_csv)
         self.add_widget(button_agregar_manualmente)
         self.add_widget(button_calcular)
@@ -84,10 +96,10 @@ class PantallaInicio(Screen):
         self.manager.current = 'calcular'
     def on_enter(self, *args):
         app = App.get_running_app()
-        self.susDatosListaX.text = "X: " + ', '.join(app.data_to_pass_X)
-        self.susDatosListaY.text = "Y: " + ', '.join(app.data_to_pass_Y)
-        self.susDatosListaX.text = "X: " + ', '.join(app.data_to_pass_CSVX)
-        self.susDatosListaY.text = "Y: " + ', '.join(app.data_to_pass_CSVY)
+        self.susDatosListaX.text =  ', '.join(app.data_to_pass_X)
+        self.susDatosListaY.text =  ', '.join(app.data_to_pass_Y)
+        self.susDatosListaCSVX.text = ', '.join(app.data_to_pass_CSVX)
+        self.susDatosListaCSVY.text = ', '.join(app.data_to_pass_CSVY)
 
 
 
