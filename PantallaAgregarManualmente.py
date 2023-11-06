@@ -9,7 +9,7 @@ class PantallaAgregarManualmente(Screen):
     def __init__(self, **kwargs):
         super(PantallaAgregarManualmente, self).__init__(**kwargs)
 
-        background = Image(source='background_Manual.jpg', allow_stretch=True)
+        background = Image(source='background_Manual2.jpg', allow_stretch=True)
         #hay que poner otra mejor imagen
         self.add_widget(background)
 

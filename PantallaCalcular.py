@@ -10,7 +10,7 @@ class PantallaCalcular(Screen):
     def __init__(self, **kwargs):
         super(PantallaCalcular, self).__init__(**kwargs)
 
-        background = Image(source='background_Manual.jpg', allow_stretch=True)
+        background = Image(source='background_Manual2.jpg', allow_stretch=True)
 
         self.add_widget(background)
 
