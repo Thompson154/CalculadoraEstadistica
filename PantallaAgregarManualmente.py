@@ -45,7 +45,7 @@ class PantallaAgregarManualmente(Screen):
                              )
 
         self.inputListX = TextInput(
-            text= "En X",
+            hint_text= "En X",
             size_hint=(None, None),
             width=500,
             height=80,
@@ -53,7 +53,7 @@ class PantallaAgregarManualmente(Screen):
         )
 
         self.inputListY = TextInput(
-            text="En Y",
+            hint_text="En Y",
             size_hint=(None, None),
             width=500,
             height=80,
@@ -70,7 +70,7 @@ class PantallaAgregarManualmente(Screen):
 
     def volver_a_inicio(self, instance):
         app = App.get_running_app()
-        app.data_to_pass_X = self.inputListX.text
-        app.data_to_pass_Y = self.inputListY.text
-        app.data_to_pass_tamnioListas = self.textTamnioDeListas
+        app.data_to_pass_X = self.inputListX.text.split()
+        app.data_to_pass_Y = self.inputListY.text.split()
+        app.data_to_pass_tamnioListas = self.textTamnioDeListas.text
         self.manager.current = 'inicio'

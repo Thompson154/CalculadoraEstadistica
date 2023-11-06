@@ -1,6 +1,8 @@
 from fontTools.cu2qu.cu2qu import MAX_N
 
 
+n = 0
+a = []
 class Node:
     def _init_(self):
         self.sum = 0

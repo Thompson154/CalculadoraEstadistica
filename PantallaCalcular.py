@@ -1,8 +1,10 @@
+from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
 from kivy.uix.label import Label
 from kivy.uix.image import Image
+import segmentTree
 
 class PantallaCalcular(Screen):
     def __init__(self, **kwargs):
@@ -32,7 +34,7 @@ class PantallaCalcular(Screen):
         botonConsultar = Button(text="Consultar",
                                 size_hint=(None, None),
                                 size=(300, 100),
-
+                                on_press=self.calcularConSegmentTree,
                                 background_color=(0.2, 0.6, 1, 1),
                                 pos_hint={'center_x': 0.85, 'center_y': 0.925}
                                 )
@@ -116,38 +118,32 @@ class PantallaCalcular(Screen):
                         bold=True
                         )
 
-        mostrarSuma = Label(text=" Resultado ",
+        self.mostrarSuma = Label(text=" Resultado ",
                             font_size='20sp',
                             pos_hint={'center_x': 0.35, 'center_y': 0.82},
                             color=(0, 0, 0, 1),
                             bold=True
                             )
 
-        mostrarPromedio = Label(text="Resultado",
+        self.mostrarPromedio = Label(text="Resultado",
                                 font_size='20sp',
                                 pos_hint={'center_x': 0.35, 'center_y': 0.62},
                                 color=(0, 0, 0, 1),
                                 bold=True
                                 )
 
-        mostrarMinimo = Label(text="Resultado",
+        self.mostrarMinimo = Label(text="Resultado",
                               font_size='20sp',
                               pos_hint={'center_x': 0.35, 'center_y': 0.42},
                               color=(0, 0, 0, 1),
                               bold=True
                               )
-        mostrarMaximo= Label(text="Resultado",
+        self.mostrarMaximo= Label(text="Resultado",
                             font_size='20sp',
                             pos_hint={'center_x': 0.35, 'center_y': 0.22},
                             color=(0, 0, 0, 1),
                             bold=True
                             )
-
-
-
-
-
-
 
 
 
@@ -163,16 +159,33 @@ class PantallaCalcular(Screen):
         self.add_widget(a2)
         self.add_widget(self.finalY)
         self.add_widget(suma)
-        self.add_widget(mostrarSuma)
+        self.add_widget(self.mostrarSuma)
         self.add_widget(promedio)
-        self.add_widget(mostrarPromedio)
+        self.add_widget(self.mostrarPromedio)
         self.add_widget(maximo)
-        self.add_widget(mostrarMaximo)
+        self.add_widget(self.mostrarMaximo)
         self.add_widget(minimo)
-        self.add_widget(mostrarMinimo)
+        self.add_widget(self.mostrarMinimo)
 
 
     def volver_a_inicio(self, instance):
         self.manager.current = 'inicio'
+
+
+    def calcularConSegmentTree(self,*args):
+        app = App.get_running_app()
+        n = app.data_to_pass_tamnioListas
+        listaX = list(map(int, app.data_to_pass_X))  # Convertir los elementos de la lista en enteros
+        listaY = list(map(int, app.data_to_pass_Y))  # Convertir los elementos de la lista en enteros
+        segmentTree.n = n
+        segmentTree.a = listaX
+        resultadoX = segmentTree.query(int(self.inicioX.text), int(self.finalX.text), 0, 2, 4)
+        segmentTree.a = listaY
+        resultadoY = segmentTree.query(int(self.inicioY.text), int(self.finalY.text), 0, 2, 4)
+
+        self.mostrarMaximo.text = str(resultadoX.max) + " " + str(resultadoY.max)
+        self.mostrarMinimo.text = str(resultadoX.min) + " " + str(resultadoY.min)
+        self.mostrarSuma.text = str(resultadoX.sum) + " " + str(resultadoY.sum)
+
 
 

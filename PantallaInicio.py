@@ -84,8 +84,8 @@ class PantallaInicio(Screen):
         self.manager.current = 'calcular'
     def on_enter(self, *args):
         app = App.get_running_app()
-        self.susDatosListaX.text = "X: " + app.data_to_pass_X
-        self.susDatosListaY.text = "Y: " + app.data_to_pass_Y
+        self.susDatosListaX.text = "X: " + ', '.join(app.data_to_pass_X)
+        self.susDatosListaY.text = "Y: " + ', '.join(app.data_to_pass_Y)
 
 
 
