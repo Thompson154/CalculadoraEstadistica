@@ -1,8 +1,12 @@
+import matplotlib.pyplot as plt
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
 from kivy.uix.label import Label
 from kivy.uix.image import Image
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.popup import Popup
+from kivy.garden.matplotlib.backend_kivyagg import FigureCanvasKivyAgg
 
 class PantallaCalcular(Screen):
     def __init__(self, **kwargs):
@@ -172,7 +176,61 @@ class PantallaCalcular(Screen):
         self.add_widget(mostrarMinimo)
 
 
-    def volver_a_inicio(self, instance):
-        self.manager.current = 'inicio'
+
+
+    def mostrar_graficos(self):
+     datos_x, datos_y = self.obtener_datos_de_ui()
+     fig, ax = plt.subplots()
+
+    # Calcula estadísticas de los datos
+     suma = sum(datos_y)
+     maximo = max(datos_y)
+     minimo = min(datos_y)
+     promedio = suma / len(datos_y)
+
+    # Añade los gráficos al subplot
+     ax.plot(datos_x, datos_y, label='Datos')  # Ejemplo de gráfico de línea
+     ax.axhline(y=maximo, color='r', linestyle='-', label=f'Máximo: {maximo}')
+     ax.axhline(y=minimo, color='g', linestyle='-', label=f'Mínimo: {minimo}')
+     ax.axhline(y=promedio, color='b', linestyle='--', label=f'Promedio: {promedio:.2f}')
+
+    # Añade leyendas, títulos y etiquetas
+     ax.legend()
+     ax.set_title('Análisis Estadístico')
+     ax.set_xlabel('Datos X')
+     ax.set_ylabel('Datos Y')
+
+    # Crea un contenedor BoxLayout para el gráfico
+     contenedor_grafico = BoxLayout()
+     contenedor_grafico.add_widget(FigureCanvasKivyAgg(plt.gcf()))
+
+    # Crea un Popup para mostrar el gráfico
+     popup = Popup(title='Gráfico Estadístico',
+                  content=contenedor_grafico,
+                  size_hint=(None, None), size=(400, 400))
+     popup.open()
+
+def obtener_datos_de_ui(self):
+     
+    datos_x_str = self.ids.input_x.text  
+    datos_y_str = self.ids.input_y.text  
+    
+    # Convierte las cadenas de texto en listas de números
+    # Aquí se asume que los números están separados por comas y que son válidos
+    try:
+        datos_x = [float(x.strip()) for x in datos_x_str.split(',')]
+        datos_y = [float(y.strip()) for y in datos_y_str.split(',')]
+    except ValueError:
+        # Maneja el error si la conversión falla, por ejemplo, si el usuario ingresa un valor no numérico
+        popup = Popup(title='Error',
+                      content=Label(text='Por favor, ingrese solo números separados por comas.'),
+                      size_hint=(None, None), size=(400, 200))
+        popup.open()
+        return [], []  # Retorna listas vacías si hay un error
+    
+    return datos_x, datos_y
+
+def volver_a_inicio(self, instance):
+    self.manager.current = 'inicio'
 
 
